@@ -1,0 +1,406 @@
+swagger: "2.0"
+info:
+  description: "This is a sample server Petstore server.  You can find out more about     Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).      For this sample, you can use the api key `special-key` to test the authorization     filters."
+  version: "1.0.0"
+  title: "Swagger Petstore"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "apiteam@swagger.io"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "petstore.swagger.io"
+basePath: "/v2"
+tags:
+- name: "student"
+  description: "Everything about a student"
+- name: "teacher"
+  description: "Everything about a teacher"
+- name: "course"
+  description: "Everything about a course"
+schemes:
+- "https"
+- "http"
+paths:
+  /student:
+    post:
+      tags:
+      - "student"
+      summary: "Add a new student to a uni"
+      description: ""
+      operationId: "addStudent"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Student object that needs to be added to the Uni"
+        required: true
+        schema:
+          $ref: "#/definitions/Student"
+      responses:
+        "405":
+          description: "Invalid input"
+        "200":
+          description: "ok"
+    put:
+      tags:
+      - "student"
+      summary: "Update an existing student"
+      description: ""
+      operationId: "updateStudent"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Student object that needs to be added to the uni"
+        required: true
+        schema:
+          $ref: "#/definitions/Student"
+      responses:
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "Student not found"
+        "405":
+          description: "Validation exception"
+        "200":
+          description: "ok"
+  /student/{studentId}:
+    get:
+      tags:
+      - "student"
+      summary: "Finds Students by student id"
+      operationId: "findStudentsById"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "studentId"
+        in: "path"
+        description: "id to match"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Student"
+        "400":
+          description: "Invalid status value"
+    delete:
+      tags:
+      - "student"
+      summary: "Deletes a student"
+      operationId: "deleteStudent"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "studentId"
+        in: "path"
+        description: "student id to delete"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "successful operation"
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "student not found"
+  /teacher:
+    post:
+      tags:
+      - "teacher"
+      summary: "Add a new teacher to a uni"
+      description: ""
+      operationId: "addTeacher"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Teacher object that needs to be added to the Uni"
+        required: true
+        schema:
+          $ref: "#/definitions/Teacher"
+      responses:
+        "405":
+          description: "Invalid input"
+        "200":
+          description: "ok"
+    put:
+      tags:
+      - "teacher"
+      summary: "Update an existing Teacher"
+      description: ""
+      operationId: "updateTeacher"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Teacher object that needs to be added to the uni"
+        required: true
+        schema:
+          $ref: "#/definitions/Teacher"
+      responses:
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "Teacher not found"
+        "405":
+          description: "Validation exception"
+        "200":
+          description: "ok"
+  /teacher/{teacherId}:
+    get:
+      tags:
+      - "teacher"
+      summary: "Finds Teachers by teacher id"
+      operationId: "findTeacherById"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "teacherId"
+        in: "path"
+        description: "id to match"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Teacher"
+        "400":
+          description: "Invalid status value"
+    delete:
+      tags:
+      - "teacher"
+      summary: "Deletes a teacher"
+      operationId: "deleteTeacher"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "teacherId"
+        in: "path"
+        description: "teacher id to delete"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "successful operation"
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "teacher not found"
+  /course:
+    post:
+      tags:
+      - "course"
+      summary: "Add a new course to a uni"
+      description: ""
+      operationId: "addCourse"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "course object that needs to be added to the Uni"
+        required: true
+        schema:
+          $ref: "#/definitions/Course"
+      responses:
+        "405":
+          description: "Invalid input"
+        "200":
+          description: "ok"
+    put:
+      tags:
+      - "course"
+      summary: "Update an existing course"
+      description: ""
+      operationId: "updateCourse"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "course object that needs to be added to the uni"
+        required: true
+        schema:
+          $ref: "#/definitions/Course"
+      responses:
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "course not found"
+        "405":
+          description: "Validation exception"
+        "200":
+          description: "ok"
+    get:
+      tags:
+      - "course"
+      summary: "find all courses"
+      operationId: "findAllCourses"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items: 
+              $ref: "#/definitions/Course"
+        "400":
+          description: "Invalid status value"
+  /course/{courseId}:
+    get:
+      tags:
+      - "course"
+      summary: "Finds course by teacher id"
+      operationId: "findCourseById"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "courseId"
+        in: "path"
+        description: "id to match"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Course"
+        "400":
+          description: "Invalid status value"
+    delete:
+      tags:
+      - "course"
+      summary: "Deletes a course"
+      operationId: "deleteCourse"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "courseId"
+        in: "path"
+        description: "course id to delete"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "successful operation"
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "course not found"
+definitions:
+  Student:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      firstName:
+        type: "string"
+      lastName:
+        type: "string"
+      email:
+        type: "string"
+      phone:
+        type: "string"
+      StudyProgram: 
+        type: "string"
+      Course:
+        type: "array"
+        items: 
+          $ref: "#/definitions/Course"
+      ects: 
+        type: "number"
+        format: "float32"
+    xml:
+      name: "Student"
+  Course:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      name:
+        type: "string"
+      teacher: 
+        $ref: "#/definitions/Teacher"
+      ects: 
+        type: "number"
+        format: "float32"
+      rating: 
+        type: "number"
+        format: "int64"
+    xml:
+      name: "Course"
+  Teacher:
+    type: "object"
+    required:
+    - "name"
+    - "photoUrls"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      Course:
+        $ref: "#/definitions/Course"
+      firstname:
+        type: "string"
+      lastname:
+        type: "string"
+    xml:
+      name: "Teacher"
+  ApiResponse:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        format: "int32"
+      type:
+        type: "string"
+      message:
+        type: "string"
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"
