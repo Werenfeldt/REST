@@ -18,6 +18,8 @@ type Course struct {
 	Rating float32 `json:"rating"`
 }
 
+
+
 var courses = []Course{
 	{Id: 2222, Name: "BDSA", Ects: 15, Rating: 34},
 	{Id: 4444, Name: "DisSys", Ects: 7.5, Rating: 0},

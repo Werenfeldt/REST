@@ -1,8 +1,6 @@
 package main
 
 import (
-	"bytes"
-	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"log"
@@ -10,9 +8,13 @@ import (
 )
 
 func main() {
-   //getCourses();
-   //getCourse();
-   newCourse();
+   getCourses();
+   fmt.Println();
+   delete();
+   fmt.Println();
+   getCourse();
+   fmt.Println();
+   getCourses();
 }
 
 func getCourses(){
@@ -34,7 +36,7 @@ func getCourses(){
 }
 
 func getCourse(){
-	resp, err := http.Get("http://localhost:8080/courses/9456")
+	resp, err := http.Get("http://localhost:8080/courses/6666")
 
     if err != nil {
         log.Fatal(err)
@@ -51,24 +53,26 @@ func getCourse(){
     fmt.Println(string(body))
 }
 
-func newCourse(){
-	Data := map[string]string{"id": "0356","name": "BDSA","ects": "15","rating": "34"}
-	json_data, err := json.Marshal(Data)
-
-
+func delete(){
+    client := &http.Client{}
+    req, err := http.NewRequest("DELETE", "http://localhost:8080/courses/6666", nil)
     if err != nil {
-        log.Fatal(err)
+        fmt.Println(err)
+        return
     }
 
-	resp, err := http.Post("http://localhost:8080/courses", "application/json", bytes.NewBuffer(json_data))
-	
+    resp, err := client.Do(req)
     if err != nil {
-        log.Fatal(err)
+        fmt.Println(err)
+        return
     }
+    defer resp.Body.Close()
 
-	var res map[string]interface{}
-
-	json.NewDecoder(resp.Body).Decode(&res)
-
-    fmt.Println(res)
+    // Read Response Body
+    respBody, err := ioutil.ReadAll(resp.Body)
+    if err != nil {
+        fmt.Println(err)
+        return
+    }
+    fmt.Println(string(respBody))
 }
