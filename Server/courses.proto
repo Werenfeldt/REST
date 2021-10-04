@@ -8,13 +8,13 @@ option java_outer_classname = "HelloWorldProto";
 package main;
 
 message course{
-    string id = 1;
+  string id = 1;
 
-    string Name= 2; 
+  string Name= 2; 
 
-	string Ects =3;
+  string Ects =3;
 
-	string Rating = 4;
+  string Rating = 4;
 }
 
 // The greeting service definition.
@@ -30,5 +30,5 @@ message CourseRequest {
 
 // The response message containing the greetings
 message CoursesReply {
-  string message = 1;
+  string id = 1;
 }
