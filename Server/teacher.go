@@ -1,4 +1,4 @@
-package Server
+package main
 
 type Teacher struct {
 	Id int64 `json:"id,omitempty"`
