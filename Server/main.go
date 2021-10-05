@@ -6,7 +6,7 @@ import (
 
 // curl -i -X POST -H "Content-Type: application/json" -d "{"id": "8888", "name": "DMat"}" http://localhost:8080/courses
 
-func main(){
+func main() {
 	router := gin.Default()
 	router.GET("/students", getStudents)
 	router.POST("/students", newStudents)
@@ -20,6 +20,3 @@ func main(){
 
 	router.Run("localhost:8080")
 }
-
-
-

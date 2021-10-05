@@ -1,18 +1,16 @@
 syntax = "proto3";
 
-option go_package = "google.golang.org/grpc/examples/helloworld/helloworld";
-option java_multiple_files = true;
-option java_package = "io.grpc.examples.helloworld";
-option java_outer_classname = "HelloWorldProto";
+option go_package = "github.com/Werenfeldt/REST;course";
+
 
 package main;
 
 message course{
   string id = 1;
 
-  string Name= 2; 
+  string Name = 2; 
 
-  string Ects =3;
+  string Ects = 3;
 
   string Rating = 4;
 }
@@ -20,7 +18,7 @@ message course{
 // The greeting service definition.
 service Courses {
   // Sends a greeting
-  rpc SayHello (CourseRequest) returns (CoursesReply) {}
+  rpc AddCourse (CourseRequest) returns (CoursesReply) {}
 }
 
 // The request message containing the user's name.
